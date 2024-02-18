@@ -3,15 +3,10 @@ from fectch_and_extract import extract_text, fetch_articles
 from get_sumary import generate_summary
 from key_world_url import get_key_links
 from goose3 import Goose
-from keyword_1 import get_key_words
+
 g = Goose()
 SEARCH_RESULTS_START = 1
 SEARCH_RESULTS_STOP = 3
-
-def get_highlighted(text, lis):
-    for key in lis:
-        text = text.replace(key, f"<b>{key}</b>")
-    return text
 
 def main():
     st.set_page_config(layout="wide")
@@ -37,12 +32,10 @@ def main():
                 print("Error:", e)
 
         st.header("Summary")
-        
         summary = generate_summary(result, max_token_limit, language=language)
-        key_words = get_key_words(summary)
-        st.write(get_highlighted(summary, key_words))
+        st.write(summary)
 
-        st.header("Things You Might Like")
+        st.header("Articles You Might Like")
 
         urls = get_key_links(user_query=input_query, summary=summary)
 

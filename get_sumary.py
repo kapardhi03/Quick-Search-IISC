@@ -5,7 +5,7 @@ def generate_summary(full_text , max_token_limit,language):
     if language != "English": max_token_limit = int(max_token_limit * 3) 
     prompt = f"give me a comnbined summary of these articles in {language}:\n"+full_text
 
-    client = OpenAI(api_key = "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")
+    client = OpenAI(api_key = "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")
 
     completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
