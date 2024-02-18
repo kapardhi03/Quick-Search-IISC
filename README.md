@@ -6,7 +6,7 @@ The Quick Search application is a tool that allows users to input a search query
 
 ## Visit Here
 
-To use the Quick Search application, visit here (http://16.171.37.252:8501/)
+To use the Quick Search application, visit here (http://13.60.22.144:8501/)
 
 ## Features
 
