@@ -48,11 +48,8 @@ def main():
                 st.subheader(title)
                 st.write(urls[key][0])
                 st.write("---")
-
-        except AuthenticationError:
-            st.error("API key expired. Please update the API key.")
         except Exception as e:
-            st.error(f"An error occurred: {str(e)}")
+            st.error(f""API key expired. Please update the API key. An error occurred: {str(e)}")
 
 if __name__ == "__main__":
     main()
