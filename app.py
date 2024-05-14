@@ -5,6 +5,7 @@ from key_world_url import get_key_links
 from goose3 import Goose
 
 g = Goose()
+
 SEARCH_RESULTS_START = 1
 SEARCH_RESULTS_STOP = 3
 
@@ -21,32 +22,37 @@ def main():
     if st.sidebar.button("**Search**"):
         st.empty()
 
-        articles = fetch_articles(input_query, start=SEARCH_RESULTS_START, stop=SEARCH_RESULTS_STOP)
-        articles = articles[:4]
+        try:
+            articles = fetch_articles(input_query, start=SEARCH_RESULTS_START, stop=SEARCH_RESULTS_STOP)
+            articles = articles[:4]
 
-        result = ""
-        for article in articles:
-            try:
-                result += extract_text(article)["content"]
-            except Exception as e:
-                print("Error:", e)
+            result = ""
+            for article in articles:
+                try:
+                    result += extract_text(article)["content"]
+                except Exception as e:
+                    print("Error:", e)
 
-        st.header("Summary")
-        summary = generate_summary(result, max_token_limit, language=language)
-        st.write(summary)
+            st.header("Summary")
+            summary = generate_summary(result, max_token_limit, language=language)
+            st.write(summary)
 
-        st.header("Articles You Might Like")
+            st.header("Articles You Might Like")
+            urls = get_key_links(user_query=input_query, summary=summary)
 
-        urls = get_key_links(user_query=input_query, summary=summary)
+            for key in urls:
+                title = g.extract(urls[key][0]).title
+                print(title)
+                if title == "":
+                    continue
+                st.subheader(title)
+                st.write(urls[key][0])
+                st.write("---")
 
-        for key in urls:
-            
-            title = g.extract(urls[key][0]).title
-            print(title)
-            if title == "": continue
-            st.subheader(title)
-            st.write(urls[key][0])
-            st.write("---")
+        except AuthenticationError:
+            st.error("API key expired. Please update the API key.")
+        except Exception as e:
+            st.error(f"An error occurred: {str(e)}")
 
 if __name__ == "__main__":
     main()
