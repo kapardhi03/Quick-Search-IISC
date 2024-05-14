@@ -6,7 +6,7 @@ The Quick Search application is a tool that allows users to input a search query
 
 ## Visit Here
 
-To use the Quick Search application, visit here (http://13.60.22.144:8501/)
+To use the Quick Search application, visit here (http://13.60.22.144:8501/) (https://quick-search-iisc.onrender.com)
 
 ## Features
 
@@ -38,7 +38,7 @@ To use the Quick Search application, visit here (http://13.60.22.144:8501/)
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/quick-search-app.git
+    git clone https://github.com/kapardhi03/Quick-Search-IISC.git
     ```
 
 2. Install dependencies:
