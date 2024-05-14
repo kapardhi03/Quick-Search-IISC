@@ -49,7 +49,7 @@ def main():
                 st.write(urls[key][0])
                 st.write("---")
         except Exception as e:
-            st.error(f""API key expired. Please update the API key. An error occurred: {str(e)}")
+            st.error(f"API key expired. Please update the API key. An error occurred: {str(e)}")
 
 if __name__ == "__main__":
     main()
