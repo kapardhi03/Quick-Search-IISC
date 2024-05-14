@@ -42,6 +42,7 @@ def main():
         for key in urls:
             
             title = g.extract(urls[key][0]).title
+            print(title)
             if title == "": continue
             st.subheader(title)
             st.write(urls[key][0])
