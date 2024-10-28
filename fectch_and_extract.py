@@ -2,6 +2,7 @@ import certifi
 from googlesearch import search
 from goose3 import Goose
 
+# def get_title()
 def extract_text(article_url):
     g = Goose()
     try:
