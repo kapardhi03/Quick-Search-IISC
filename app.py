@@ -33,7 +33,7 @@ class SearchApp:
 
     def render_sidebar(self) -> tuple:
         """Render sidebar elements and return input values"""
-        st.sidebar.title("Quick Search ")
+        st.sidebar.title("Quick Search")
         
         input_query = st.sidebar.text_area(
             "**Enter your search query:**",
@@ -83,7 +83,7 @@ class SearchApp:
                 article_content = extract_text(article)["content"]
                 combined_text += article_content + "\n\n"
             except Exception as e:
-                st.warning(f"⚠️ Couldn't process article {idx}: {str(e)}")
+                # st.warning(f"⚠️ Couldn't process article {idx}: {str(e)}")
                 continue
 
         return combined_text
@@ -126,7 +126,7 @@ class SearchApp:
         """Handle user input and button interactions"""
         input_query, max_token_limit, language = self.render_sidebar()
 
-        if st.sidebar.button(" **Search**", type="primary", use_container_width=True):
+        if st.sidebar.button("**Search**", type="primary", use_container_width=True):
             if not input_query:
                 st.error("⚠️ Please enter a search query")
                 return
