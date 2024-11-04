@@ -5,6 +5,7 @@ import time
 from fectch_and_extract import extract_text, fetch_articles
 from get_sumary import generate_summary
 from key_world_url import get_key_links
+from chat import get_chat_response
 
 # Constants
 SEARCH_RESULTS_START = 1
@@ -30,6 +31,8 @@ class SearchApp:
         """Initialize session state variables"""
         if 'search_history' not in st.session_state:
             st.session_state.search_history = []
+        if "chat_history" not in st.session_state:
+            st.session_state.chat_history = []
 
     def render_sidebar(self) -> tuple:
         """Render sidebar elements and return input values"""
@@ -125,7 +128,6 @@ class SearchApp:
     def handle_user_interaction(self):
         """Handle user input and button interactions"""
         input_query, max_token_limit, language = self.render_sidebar()
-
         if st.sidebar.button("**Search**", type="primary", use_container_width=True):
             if not input_query:
                 st.error("⚠️ Please enter a search query")
@@ -151,9 +153,44 @@ class SearchApp:
                 # Display related articles
                 self.display_related_articles(input_query, summary)
 
+                # Render chat interface with the generated summary, insights, and articles
+                self.render_chat_interface(summary, insights="Generated insights here", related_articles="Generated related articles here")
+
             except Exception as e:
                 st.error(f"❌ An error occurred: {str(e)}")
                 st.error("Please try again with a different query or check your API key.")
+
+    def render_chat_interface(self, summary: str, insights: str, related_articles: str):
+        """Display chat interface in the sidebar"""
+        st.sidebar.title("Chat with the Bot")
+        st.sidebar.write("Ask questions about the summary, insights, or related articles.")
+
+        # User input for chat
+        user_question = st.sidebar.text_input("Your question", "")
+
+        # Send chat message on button click
+        if st.sidebar.button("Send"):
+            if user_question:
+                # Append user question to chat history
+                st.session_state.chat_history.append({"user": user_question})
+                
+                # Get response from the chat function
+                bot_response = get_chat_response(
+                    question=user_question,
+                    summary=summary,
+                    insights=insights,
+                    related_articles=related_articles
+                )
+
+                # Append bot response to chat history
+                st.session_state.chat_history.append({"bot": bot_response})
+
+        # Display chat history
+        for chat in st.session_state.chat_history:
+            if "user" in chat:
+                st.sidebar.markdown(f"**You:** {chat['user']}")
+            if "bot" in chat:
+                st.sidebar.markdown(f"**Bot:** {chat['bot']}")
 
 def main():
     """Main application entry point"""
