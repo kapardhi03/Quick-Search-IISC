@@ -1,18 +1,61 @@
-# perplexity-imitate
+---
 
-A Python application designed to replicate the functionality of a perplexity's search engine. Upon receiving a query from the user, it scours the internet for top articles. It selects the most relevant ones and compiles a comprehensive summary utilizing the OPENAI API. Moreover, employing the YAKE algorithm, the application extracts crucial keywords from the summary, helping in the creation of a new context. This enhanced context is then utilized for further searches, giving suggested articles to the user's query.
+# Quick Search Application
 
-### Yake
+The Quick Search application is a tool that allows users to input a search query, retrieve related articles, and generate a summary with highlighted keywords. Additionally, the application provides related links based on the generated summary.
 
-YAKE! is a lightweight unsupervised automatic keyword extraction method that rests on text statistical features extracted from single documents to select the most important keywords of a text. Yake does not need to be trained on a particular set of documents, neither it depends on dictionaries, external-corpus, size of the text, language, or domain.
+## Visit Here
 
-source: https://github.com/LIAAD/yake
+To use the Quick Search application, visit here (http://13.60.22.144:8501/) (https://quick-search-iisc.onrender.com)
 
-### Multilingual Support
+## Features
 
-The application offers multilingual support, enabling users to conduct searches and receive summaries and articles in languages such as English, Telugu, Kannada, and Hindi. This approach increases the reach of the product and accommodates diverse linguistic preferences, enhancing the user experience.
+- **Search Parameters:**
+  - Users can input their search query.
+  - Adjustable maximum token limit for summary length.
+  - Selection of the language for the search.
 
-## Samples
+- **Search Results:**
+  - Retrieves relevant articles based on the search query.
+  - Generates a summary of the articles.
 
-<img src="./eng.jpeg" alt="Example Image" width="80%"/>
-<img src="./kannada.jpeg" alt="Example Image" width="80%"/>
+- **Summary:**
+  - Highlights keywords in the summary.
+  
+- **Things You Might Like:**
+  - Provides related links based on the generated summary.
+
+## How to Use
+
+1. Open the application.
+2. Input your search query in the sidebar.
+3. Adjust the desired parameters (maximum token limit, language).
+4. Click the "Search" button.
+5. Explore the generated summary and related links.
+
+## Installation
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/kapardhi03/Quick-Search-IISC.git
+    ```
+
+2. Install dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. Run the application:
+
+    ```bash
+    streamlit run main.py
+    ```
+
+## Contributions
+
+Contributions are welcome! If you have any suggestions or improvements, feel free to submit a pull request.
+
+
+---
