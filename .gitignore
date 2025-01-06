@@ -6,3 +6,5 @@ temp/
 
 # Ignore a specific file
 secrets.txt
+
+.DS_Store
