@@ -8,3 +8,4 @@ temp/
 secrets.txt
 
 .DS_Store
+.env
