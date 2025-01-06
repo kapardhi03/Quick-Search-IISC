@@ -10,7 +10,7 @@ def extract_content(article_url):
     try:
         # Extract content from the given article URL
         content = g.extract(article_url)
-        # print(content)
+        print(content.cleaned_text)
         return {"status": True, "title": content.title, "content": content.cleaned_text}
     except Exception as e:
         print(f"Error extracting text from article: {e}")

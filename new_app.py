@@ -74,8 +74,10 @@ def main():
                         print("Error@35-app:", e)
 
                 if "index" not in st.session_state or st.session_state.index is None:
+                    print("article content", article_content)
                     chunks = create_chunks(article_content)
                     chunk_vectors = summary_.get_embeddings(chunks)
+                    # print(len(chunks), chunk_vectors.size)
                     dimension = chunk_vectors.shape[1]
                     index_ = faiss.IndexFlatL2(dimension)
                     index_.add(chunk_vectors)

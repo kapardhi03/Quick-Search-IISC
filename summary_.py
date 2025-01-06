@@ -6,7 +6,7 @@ from sentence_transformers import SentenceTransformer
 
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key="")
+client = OpenAI(api_key="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")
 
 def get_embeddings(text, model="all-MiniLM-L6-v2"):
     model = SentenceTransformer(model)
